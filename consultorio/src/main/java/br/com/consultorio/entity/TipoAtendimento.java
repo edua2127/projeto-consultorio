@@ -1,11 +1,11 @@
 package br.com.consultorio.entity;
 
-public enum TipoPaciente {
+public enum TipoAtendimento {
     PARTICULAR("Particular"), CONVENIO("Convenio");
 
     private String descricao;
 
-    TipoPaciente(String descricao) {
+    TipoAtendimento(String descricao) {
         this.descricao = descricao;
     }
 

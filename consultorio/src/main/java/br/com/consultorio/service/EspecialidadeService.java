@@ -1,5 +1,6 @@
 package br.com.consultorio.service;
 
+import br.com.consultorio.entity.Convenio;
 import br.com.consultorio.entity.Especialidacao;
 import br.com.consultorio.repository.EspecializacaoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,8 +34,12 @@ public class EspecialidadeService {
     }
 
     @Transactional
-    public void updateExcluido(Long id, LocalDateTime dataExcluido) {
-        this.especialidadeRepository.updateStatusExcluido(id, dataExcluido);
+    public void updateExcluido(Long id, Especialidacao especialidacao) {
+        if (id == especialidacao.getId()) {
+            this.especialidadeRepository.updateStatusExcluido(id, LocalDateTime.now());
+        } else {
+            throw new RuntimeException();
+        }
     }
 
     //update

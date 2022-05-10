@@ -1,5 +1,6 @@
 package br.com.consultorio.service;
 
+import br.com.consultorio.entity.Especialidacao;
 import br.com.consultorio.entity.Secretaria;
 import br.com.consultorio.repository.SecretariaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,8 +34,12 @@ public class SecretariaService {
     }
 
     @Transactional
-    public void updateExcluido(LocalDateTime dataExcluido, Long id) {
-        this.secretariaRepository.updateExcluido(dataExcluido, id);
+    public void updateExcluido(Long id, Secretaria secretaria) {
+        if (id == secretaria.getId()) {
+            this.secretariaRepository.updateExcluido(LocalDateTime.now(), id);
+        } else {
+            throw new RuntimeException();
+        }
     }
 
     public Optional<Secretaria> selectById(Long id) {

@@ -1,6 +1,7 @@
 package br.com.consultorio.service;
 
 import br.com.consultorio.entity.Convenio;
+import br.com.consultorio.entity.Paciente;
 import br.com.consultorio.repository.ConvenioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -32,8 +33,13 @@ public class ConvenioService {
     }
 
     @Transactional
-    public void updateExcluido(Long id, LocalDateTime dataExcluido) {
-        this.convenioRepository.updateStatusExcluido(id, dataExcluido);
+    public void updateExcluido(Long id, Convenio convenio) {
+        if (id == convenio.getId()) {
+            this.convenioRepository.updateStatusExcluido(id, LocalDateTime.now());
+        } else {
+            throw new RuntimeException();
+        }
+
     }
 
     public Optional<Convenio> selectById(Long id) {
