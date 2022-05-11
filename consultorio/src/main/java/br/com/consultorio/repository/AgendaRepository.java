@@ -16,17 +16,18 @@ public interface AgendaRepository extends JpaRepository<Agenda, Long> {
     @Query("from Agenda agenda " +
             "where :dataDe BETWEEN agenda.dataDe and agenda.dataAte " +
             "and :dataAte BETWEEN agenda.dataDe and agenda.dataAte")
-    public List<Agenda> findAllValidationPaciente(
+    public List<Agenda> findAllCrossSchedulePaciente(
             @Param("dataDe")LocalDateTime dataDe,
             @Param("dataAte") LocalDateTime dataAte);
 
 
+    //ache todos aqueles, deferentes de mim, que os horarios se sobrepoem
 
     @Query("from Agenda agenda " +
             "where agenda.id <> :idAgendaPassado " +
             "and :dataDe BETWEEN agenda.dataDe and agenda.dataAte " +
             "and :dataAte BETWEEN agenda.dataDe and agenda.dataAte")
-    public List<Agenda> findAllValidationUpdate(
+    public List<Agenda> findAllCrossSchedule(
             @Param("idAgendaPassado") Long idAgendaPassado,
             @Param("dataDe") LocalDateTime dataDe,
             @Param("dataAte") LocalDateTime dataAte);

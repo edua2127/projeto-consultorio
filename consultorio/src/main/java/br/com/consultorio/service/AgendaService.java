@@ -27,11 +27,11 @@ public class AgendaService {
     }
 
     public List<Agenda> selectAllValidation(LocalDateTime dataDe, LocalDateTime dataAte) {
-        return this.agendaRepository.findAllValidationPaciente(dataDe, dataAte);
+        return this.agendaRepository.findAllCrossSchedulePaciente(dataDe, dataAte);
     }
 
    public List<Agenda> selectAllValidationUpdate(Long id, LocalDateTime dataDe, LocalDateTime dataAte) {
-        return this.agendaRepository.findAllValidationUpdate(id, dataDe, dataAte);
+        return this.agendaRepository.findAllCrossSchedule(id, dataDe, dataAte);
    }
 
 
@@ -69,9 +69,10 @@ public class AgendaService {
                 throw new RuntimeException();
             }
         }
+        //se o validador for maior do que 0, o horario informado se sobrepoem com algum outro agendamento
         List<Agenda> validador = this.selectAllValidationUpdate(agenda.getId(), agenda.getDataDe(), agenda.getDataAte());
         if (validador.size() > 0) {
-
+            throw new RuntimeException();
         }
     }
 
@@ -90,7 +91,7 @@ public class AgendaService {
         }
         //paciente não pode ter dois agendamentos no mesmo horario ou o medico nao pode ter dois agendamentos no mesmo horario
         List<Agenda> verificador = this.selectAllValidation(agenda.getDataDe(), agenda.getDataAte());
-        if (verificador.size() > 0) {
+        if (verificador.size() > 0 && !agenda.getEncaixe()) {
             throw new RuntimeException();
         }
 
