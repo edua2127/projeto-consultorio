@@ -53,7 +53,9 @@ public class PacienteService {
             throw new RuntimeException();
         }
     }
+
     public void validation(Paciente paciente) {
+        //é necessario verificar se o convenio foi informado para evitar erro e null point exception
         if (paciente.getTipoAtendimento().equals(TipoAtendimento.CONVENIO)) {
             if (paciente.getConvenio().getId() == null || paciente.getConvenio() == null) {
                 throw new RuntimeException("tipo de atendimento == convenio. convenio não informado");
