@@ -3,7 +3,7 @@ package br.com.consultorio.entity;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.math.BigDecimal;
+
 import java.time.LocalDateTime;
 
 @Entity
@@ -31,5 +31,12 @@ public class Historico extends AbstractEntity{
     @Enumerated(EnumType.STRING)
     private StatusAgendamento statusAgenda;
 
+    public Historico(Agenda agenda, String observacao, Secretaria secretaria, Paciente paciente, StatusAgendamento statusAgendamento) {
+        this.agenda = agenda;
+        this.observacao = observacao;
+        this.secretaria = secretaria;
+        this.paciente = paciente;
+        this.statusAgenda = statusAgendamento;
+    }
 
 }

@@ -13,6 +13,6 @@ import java.time.LocalDateTime;
 public interface PacienteRepository extends JpaRepository<Paciente, Long> {
 
     @Modifying
-    @Query("update Paciente set Paciente.excluido = :dataExclusao where Paciente.id = :idPassado")
+    @Query("update Paciente paciente set paciente.excluido = :dataExclusao where paciente.id = :idPassado")
     public void updateStatusExcluido(@Param("dataExclusao") LocalDateTime dataExclusao, @Param("idPassado") Long idPassado);
 }
