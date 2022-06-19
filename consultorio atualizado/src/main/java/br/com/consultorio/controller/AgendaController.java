@@ -48,8 +48,8 @@ public class AgendaController {
         }
     }
 
-    @PutMapping("/excluido/{id}")
-    public ResponseEntity<?> excluido(@PathVariable("id") Long id, @RequestBody Agenda agenda) {
+    @PutMapping("/desativar/{id}")
+    public ResponseEntity<?> desativar(@PathVariable("id") Long id, @RequestBody Agenda agenda) {
         try {
             this.agendaService.excluido(id, agenda);
             return ResponseEntity.ok().body("agendamento desativado com sucesso");

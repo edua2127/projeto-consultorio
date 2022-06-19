@@ -48,8 +48,8 @@ public class MedicoController {
         }
     }
     //updateStatus
-    @PutMapping("/status/{id}")
-    public ResponseEntity<?> updateStatus(@PathVariable("id") Long id, @RequestBody Medico medico) {
+    @PutMapping("/desativar/{id}")
+    public ResponseEntity<?> desativar(@PathVariable("id") Long id, @RequestBody Medico medico) {
         try {
             this.medicoService.updateMedico(id, medico);
             return ResponseEntity.ok().body("o medico foi desativado com sucesso");

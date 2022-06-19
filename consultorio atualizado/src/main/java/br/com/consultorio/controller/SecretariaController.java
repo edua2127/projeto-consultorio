@@ -49,8 +49,8 @@ public class SecretariaController {
         }
     }
     //updatestatus
-    @PutMapping("/status/{id}")
-    public ResponseEntity<?> updateStatus(@PathVariable("id") Long id, @RequestBody Secretaria secretaria) {
+    @PutMapping("/desativar/{id}")
+    public ResponseEntity<?> desativar(@PathVariable("id") Long id, @RequestBody Secretaria secretaria) {
         try {
             this.secretariaService.updateExcluido(id, secretaria);
             return ResponseEntity.ok().body("a Secretaria foi desativada com sucesso");

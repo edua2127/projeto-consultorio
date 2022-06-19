@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Optional;
 
 @Controller
-@RequestMapping("/api/Pacientes")
+@RequestMapping("/api/pacientes")
 public class PacienteController {
     @Autowired
     private PacienteService pacienteService;
@@ -48,8 +48,8 @@ public class PacienteController {
         }
     }
     //updateStatus
-    @PutMapping("/status/{id}")
-    public ResponseEntity<?> updateStatus(@PathVariable("id") Long id, @RequestBody Paciente paciente) {
+    @PutMapping("/desativar/{id}")
+    public ResponseEntity<?> desativar(@PathVariable("id") Long id, @RequestBody Paciente paciente) {
         try {
             this.pacienteService.updateStatusExcluido(id, paciente);
             return ResponseEntity.ok().body("paciente foi desativado com sucesso");

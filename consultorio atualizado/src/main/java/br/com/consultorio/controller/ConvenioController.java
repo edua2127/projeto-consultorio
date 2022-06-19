@@ -46,7 +46,7 @@ public class ConvenioController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
-    @PutMapping("/status/{id}")
+    @PutMapping("/desativar/{id}")
     public ResponseEntity<?> updateStatus(@PathVariable("id") Long id, @RequestBody Convenio convenio) {
         try {
             this.convenioService.updateExcluido(id, convenio);
