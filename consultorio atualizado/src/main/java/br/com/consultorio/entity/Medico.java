@@ -14,7 +14,7 @@ import java.math.BigDecimal;
 
 public class Medico extends Pessoa{
     @Getter @Setter
-    @Column(nullable = false, name = "CRM")
+    @Column(name = "CRM", nullable = false)
     private String CRM;
     @Getter @Setter
     @Digits(integer = 3, fraction = 2) @Column(name = "porcentagemParticipacao", nullable = false)

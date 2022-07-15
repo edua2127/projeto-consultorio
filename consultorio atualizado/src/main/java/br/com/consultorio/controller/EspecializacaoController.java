@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Optional;
 
 @Controller
+@CrossOrigin
 @RequestMapping("/api/especialidades")
 public class EspecializacaoController {
 
@@ -29,7 +30,7 @@ public class EspecializacaoController {
         return ResponseEntity.ok().body(this.especialidadeService.selectAll(pageable));
     }
     //insert
-    @PostMapping
+    @PostMapping("/")
     public ResponseEntity<?> insert(@RequestBody Especialidacao especialidacao) {
         try {
             this.especialidadeService.insertEspecialidade(especialidacao);
@@ -49,7 +50,7 @@ public class EspecializacaoController {
         }
     }
     //updateStatus
-    @PutMapping("/status/{id}")
+    @PutMapping("/desativar/{id}")
     public ResponseEntity<?> updateStatus(@PathVariable("id") Long id, @RequestBody Especialidacao especialidade) {
         try {
             this.especialidadeService.updateExcluido(id, especialidade);

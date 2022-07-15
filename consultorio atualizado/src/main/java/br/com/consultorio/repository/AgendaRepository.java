@@ -16,7 +16,7 @@ public interface AgendaRepository extends JpaRepository<Agenda, Long> {
 
 
     @Query("from Agenda agenda where agenda.id <> :meuIdAgenda and (agenda.paciente.id = :idPaciente or " +
-            "agenda.medico.id = :idmedico)" +
+            "agenda.medico.id = :idMedico)" +
             "and (:dataDe BETWEEN agenda.dataDe and agenda.dataAte " +
             "or :dataAte BETWEEN agenda.dataDe and agenda.dataAte) and agenda.statusAgendamento = :statusAprovado")
     List<Agenda> findAllagendamentosUpdateConflitantes(
@@ -33,10 +33,10 @@ public interface AgendaRepository extends JpaRepository<Agenda, Long> {
 
     //verifique se tem algum agendamento com o mesmo medico (CADASTRO)(ainda nao tenho um agendamento)
     @Query("from Agenda agenda where (:dataDe BETWEEN agenda.dataDe and agenda.dataAte " +
-            "or :dataAte BETWEEN agenda.dataDe and agenda.dataAte) and agenda.medico.id = :idmedico and agenda.statusAgendamento = :statusAprovado")
+            "or :dataAte BETWEEN agenda.dataDe and agenda.dataAte) and agenda.medico.id = :idMedico and agenda.statusAgendamento = :statusAprovado")
     List<Agenda> agendamentoComOMesmoMedicoInsert( @Param("dataDe") LocalDateTime dataDe,
                                                           @Param("dataAte") LocalDateTime dataAte,
-                                                          @Param("idmedico") Long idMedico,
+                                                          @Param("idMedico") Long idMedico,
                                                           @Param("statusAprovado") StatusAgendamento status);
 
     @Query("from Agenda agenda where agenda.paciente.id = :idPaciente and (:dataDe BETWEEN agenda.dataDe and agenda.dataAte " +
@@ -44,7 +44,6 @@ public interface AgendaRepository extends JpaRepository<Agenda, Long> {
     List<Agenda> pacienteComAgendamentoComMedicoDiferentesInsert( @Param("idPaciente")Long idPaciente,
                                                                          @Param("dataDe") LocalDateTime dataDe,
                                                                          @Param("dataAte") LocalDateTime dataAte,
-                                                                         @Param("idmedico") Long idMedico,
                                                                          @Param("statusAprovado") StatusAgendamento status);
 
     @Modifying
@@ -56,7 +55,7 @@ public interface AgendaRepository extends JpaRepository<Agenda, Long> {
 
 
     @Modifying
-    @Query("update Agenda agenda set agenda.excluido = :dataExcluido where agenda.id = :idPassado")
-    void excluido(@Param("dataExcluido") LocalDateTime dataExcluido, @Param("idPassado")  Long idPassado);
+    @Query("update Agenda agenda set agenda.ativo = :ativo where agenda.id = :idPassado")
+    void excluido(@Param("ativo") boolean ativo, @Param("idPassado")  Long idPassado);
 
 }

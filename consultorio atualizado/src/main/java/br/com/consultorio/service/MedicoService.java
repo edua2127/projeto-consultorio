@@ -29,6 +29,10 @@ public class MedicoService {
         }
     }
 
+    public void updateDesativar(Long id, Medico medico) {
+        medico.setAtivo(false);
+        this.updateMedico(id, medico);
+    }
     public Optional<Medico> selectById(Long id) {
         return this.medicoRepository.findById(id);
     }
@@ -38,7 +42,7 @@ public class MedicoService {
     }
 
     @Transactional
-    public void updateExcluido(LocalDateTime dataExcluido, Long id) {
-        this.medicoRepository.updateExcluido(dataExcluido, id);
+    public void updateExcluido(boolean ativo, Long id) {
+        this.medicoRepository.updateExcluido(ativo, id);
     }
 }

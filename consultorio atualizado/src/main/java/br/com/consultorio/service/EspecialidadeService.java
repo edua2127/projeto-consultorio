@@ -36,7 +36,7 @@ public class EspecialidadeService {
     @Transactional
     public void updateExcluido(Long id, Especialidacao especialidacao) {
         if (id == especialidacao.getId()) {
-            this.especialidadeRepository.updateStatusExcluido(id, LocalDateTime.now());
+            this.especialidadeRepository.updateStatusExcluido(id, false);
         } else {
             throw new RuntimeException();
         }

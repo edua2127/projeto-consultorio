@@ -106,7 +106,6 @@ public class AgendaService {
                 agenda.getPaciente().getId(),
                 agenda.getDataDe(),
                 agenda.getDataAte(),
-                agenda.getMedico().getId(),
                 StatusAgendamento.APROVADO);
         if (agendamentos.size() > 0) {
             throw new RuntimeException();
@@ -118,7 +117,7 @@ public class AgendaService {
     @Transactional
     public void excluido(Long id, Agenda agenda) {
         if (agenda.getId().equals(id)) {
-            this.agendaRepository.excluido(LocalDateTime.now(), id);
+            this.agendaRepository.excluido(false, id);
         }
 
     }

@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 public interface MedicoRepository extends JpaRepository<Medico, Long> {
 
     @Modifying
-    @Query("update Medico medico set medico.excluido = :dataExcluido where medico.id = :idExcluido")
-    public void updateExcluido(@Param("dataExcluido")LocalDateTime dataExcluido,@Param("idExcluido") Long id);
+    @Query("update Medico medico set medico.ativo = :ativo where medico.id = :idExcluido")
+    public void updateExcluido(@Param("ativo")boolean dataExcluido,@Param("idExcluido") Long id);
 
 }

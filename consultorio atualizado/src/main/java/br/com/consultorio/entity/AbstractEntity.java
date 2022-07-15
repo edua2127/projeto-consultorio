@@ -19,8 +19,9 @@ public abstract class AbstractEntity {
     @Column(name = "atualizado")
     private LocalDateTime atualizado;
 
-    @Column(name = "excluido")
-    private LocalDateTime excluido;
+    @Getter @Setter
+    @Column(name = "ativo", nullable = false, columnDefinition = "BOOLEAN DEFAULT FALSE")
+    private boolean ativo;
 
     //bigdecimal -> decimal( 8, 3)
     //localdate -> timestamp

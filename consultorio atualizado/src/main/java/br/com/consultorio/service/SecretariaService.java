@@ -36,7 +36,7 @@ public class SecretariaService {
     @Transactional
     public void updateExcluido(Long id, Secretaria secretaria) {
         if (id == secretaria.getId()) {
-            this.secretariaRepository.updateExcluido(LocalDateTime.now(), id);
+            this.secretariaRepository.updateExcluido( false, id);
         } else {
             throw new RuntimeException();
         }

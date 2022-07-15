@@ -22,11 +22,19 @@ public class Paciente extends Pessoa{
     @ManyToOne(fetch = FetchType.EAGER)
     private Convenio convenio;
     @Getter @Setter
-    @Column(nullable = false, length = 100)
+    @Column( length = 100)
     private String numeroCartaoConvenio;
     @Getter @Setter
-    @Column(nullable = false)
+    @Column()
     private LocalDateTime dataVencimento;
 
-
+    @Override
+    public String toString() {
+        return "Paciente{" +
+                "tipoAtendimento=" + tipoAtendimento +
+                ", convenio=" + convenio +
+                ", numeroCartaoConvenio='" + numeroCartaoConvenio + '\'' +
+                ", dataVencimento=" + dataVencimento +
+                '}';
+    }
 }

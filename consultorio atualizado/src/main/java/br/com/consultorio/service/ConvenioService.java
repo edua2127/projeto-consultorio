@@ -35,7 +35,7 @@ public class ConvenioService {
     @Transactional
     public void updateExcluido(Long id, Convenio convenio) {
         if (id == convenio.getId()) {
-            this.convenioRepository.updateStatusExcluido(id, LocalDateTime.now());
+            this.convenioRepository.updateStatusExcluido(id, false);
         } else {
             throw new RuntimeException();
         }

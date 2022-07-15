@@ -10,7 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
-
+@CrossOrigin
 @Controller
 @RequestMapping("/api/medicos")
 public class MedicoController {
@@ -51,7 +51,7 @@ public class MedicoController {
     @PutMapping("/desativar/{id}")
     public ResponseEntity<?> desativar(@PathVariable("id") Long id, @RequestBody Medico medico) {
         try {
-            this.medicoService.updateMedico(id, medico);
+            this.medicoService.updateDesativar(id, medico);
             return ResponseEntity.ok().body("o medico foi desativado com sucesso");
         } catch(Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());

@@ -10,7 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
-
+@CrossOrigin
 @Controller
 @RequestMapping("/api/pacientes")
 public class PacienteController {
@@ -31,6 +31,7 @@ public class PacienteController {
     @PostMapping
     public ResponseEntity<?> insert(@RequestBody Paciente paciente) {
         try {
+            System.out.println(paciente.toString());
             this.pacienteService.insert(paciente);
             return ResponseEntity.ok().body("cadastro do paciente realizado com sucesso");
         } catch(Exception e) {
@@ -49,11 +50,14 @@ public class PacienteController {
     }
     //updateStatus
     @PutMapping("/desativar/{id}")
-    public ResponseEntity<?> desativar(@PathVariable("id") Long id, @RequestBody Paciente paciente) {
+    public ResponseEntity<?> updateStatus(@PathVariable("id") Long id, @RequestBody Paciente paciente) {
         try {
             this.pacienteService.updateStatusExcluido(id, paciente);
             return ResponseEntity.ok().body("paciente foi desativado com sucesso");
         } catch (Exception e) {
+            System.out.println("==================");
+            System.out.println(e.getMessage());
+            System.out.println(e.getCause());
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }

@@ -45,11 +45,15 @@ public class PacienteService {
             throw new RuntimeException();
         }
     }
-
+    @Transactional
     public void updateStatusExcluido(Long id, Paciente paciente) {
         if (id == paciente.getId()) {
-            this.pacienteRepository.updateStatusExcluido(LocalDateTime.now(), paciente.getId());
+            this.pacienteRepository.updateStatusExcluido(false, paciente.getId());
         } else {
+            System.out.println("==================");
+            System.out.println(id);
+            System.out.println(paciente.getId());
+            System.out.println("==================");
             throw new RuntimeException();
         }
     }
